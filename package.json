@@ -2,13 +2,13 @@
   "name": "feedly",
   "version": "0.1.0",
   "description": "feedly.com API",
-  "main": "index.js",
+  "main": "lib/feedly.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hildjj/feedly.git"
+    "url": "https://github.com/hildjj/node-feedly.git"
   },
   "keywords": [
     "API",
@@ -23,9 +23,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hildjj/feedly/issues"
+    "url": "https://github.com/hildjj/node-feedly/issues"
   },
-  "homepage": "https://github.com/hildjj/feedly",
+  "homepage": "https://github.com/hildjj/node-feedly",
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-codo": "^0.1.0",
@@ -40,10 +40,8 @@
     "jit-grunt": "^0.5.0"
   },
   "dependencies": {
-    "oauth": "^0.9.11",
     "open": "0.0.5",
     "q": "^1.0.1",
-    "qs": "^0.6.6",
     "request": "^2.34.0",
     "untildify": "^0.1.0"
   }
