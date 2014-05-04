@@ -207,6 +207,7 @@ module.exports = class Feedly
     ary.map (s) ->
       _normalizeTag s, userid
 
+  # @nodoc
   _normalizeCategories: (ary) ->
     userid = @state.id
     ary.map (cat) ->
