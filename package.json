@@ -1,0 +1,50 @@
+{
+  "name": "feedly",
+  "version": "0.1.0",
+  "description": "feedly.com API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hildjj/feedly.git"
+  },
+  "keywords": [
+    "API",
+    "atom",
+    "rss",
+    "feedly",
+    "news"
+  ],
+  "author": {
+    "name": "Joe Hildebrand",
+    "email": "joe-github@cursive.net"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hildjj/feedly/issues"
+  },
+  "homepage": "https://github.com/hildjj/feedly",
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-codo": "^0.1.0",
+    "grunt-coffeelint": "0.0.10",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express": "^1.2.1",
+    "grunt-release": "^0.7.0",
+    "grunt-shell": "^0.7.0",
+    "jit-grunt": "^0.5.0"
+  },
+  "dependencies": {
+    "oauth": "^0.9.11",
+    "open": "0.0.5",
+    "q": "^1.0.1",
+    "qs": "^0.6.6",
+    "request": "^2.34.0",
+    "untildify": "^0.1.0"
+  }
+}

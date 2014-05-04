@@ -1,0 +1,5 @@
+--name "Feedly API"
+--title "Feedly API Documentation"
+--readme README.md
+./src/feedly.coffee
+LICENSE.md
