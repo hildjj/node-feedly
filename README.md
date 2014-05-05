@@ -29,6 +29,11 @@ you will see a page served from http://localhost:8080/, which you can close.
 After that point, you won't need to log in again until your token expires
 (without your having called `refresh` in the meantime).
 
+**WARNING**: by default, this will store your auth token and refresh token in  
+`~/.feedly`, unencrypted.  Set the `config_file` options to null to prevent this 
+behavior, but you will have to log in through the web site each time you create
+a new `Feedly` instance.
+
 Callbacks and promises
 ======================
 
