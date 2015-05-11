@@ -34,15 +34,38 @@
         </p>
       </nav>
       <div id='filecontents'>
-        <p>This is a node API for <a href="http://developer.feedly.com">Feedly</a></p><p>More information coming.</p>
+        <p>This is a node API for <a href="http://developer.feedly.com">Feedly</a></p><h1 id="installation">Installation</h1><p>Install from NPM:</p><pre><code>npm install --save feedly
+</code></pre><h1 id="creating-an-instance">Creating an instance</h1><p>Create an instance:</p><pre><code>var Feedly = require &#39;./src/feedly&#39;
+
+var f = new Feedly({
+  client_id: &#39;MY_CLIENT_ID&#39;,
+  client_secret: &#39;MY_CLIENT_SECRET&#39;
+  port: 8080
+});
+</code></pre><h1 id="authentication">Authentication</h1><p>The first non-trivial method call you make to the object will cause your
+default browser to pop up asking you to log in.  When that process is complete,
+you will see a page served from <a href="http://localhost:8080/">http://localhost:8080/</a>, which you can close.
+After that point, you won&#39;t need to log in again until your token expires
+(without your having called <code>refresh</code> in the meantime).</p><p><strong>WARNING</strong>: by default, this will store your auth token and refresh token in<br><code>~/.feedly</code>, unencrypted.  Set the <code>config_file</code> options to null to prevent this 
+behavior, but you will have to log in through the web site each time you create
+a new <code>Feedly</code> instance.</p><h1 id="callbacks-and-promises">Callbacks and promises</h1><p>Each method takes an optional node-style <code>(error, results)</code> callback.  If you
+prefer a <a href="https://github.com/kriskowal/q">promise</a>-style
+approach, you do without a callback, like this:</p><pre><code>f.reads().then(function(results) {
+    // process results
+},
+function (error) {
+    // process error
+});
+</code></pre><h1 id="documentation">Documentation</h1><p>Full documentation for the API can be found
+<a href="http://hildjj.github.io/node-feedly/doc/">here</a>.</p>
       </div>
     </div>
     <div id='footer'>
-  May 04, 14 17:02:13 by
+  May 11, 15 08:54:19 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
-  2.0.8
+  2.0.11
   &#10034;
   Press H to see the keyboard shortcuts
   &#10034;

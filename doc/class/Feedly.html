@@ -405,42 +405,6 @@ as your access token in ~/.feedly by default.</p>
       Delete tags 
     </span>
   </li>
-  <li>
-    <span class='signature'>
-      <a href='#topics-dynamic'>
-        #
-(promise(Array(Topic)))
-<b>topics</b><span>(cb)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      List all topics 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#addTopic-dynamic'>
-        #
-(promise())
-<b>addTopic</b><span>(topic, interest, cb)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      Add a topic 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#deleteTopic-dynamic'>
-        #
-(promise())
-<b>deleteTopic</b><span>(topic, cb)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      Remove a topic 
-    </span>
-  </li>
 </ul>
       <h2>Constructor Details</h2>
       <div class='methods'>
@@ -1912,143 +1876,14 @@ entry id, user and application.</p>
   </ul>
 </div>
   </div>
-  <div class='method_details'>
-    <p class='signature' id='topics-dynamic'>
-      #
-(promise(Array(Topic)))
-<b>topics</b><span>(cb)</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>List all topics</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>cb</span>
-      <span class='type'>
-        (
-          <tt>function(error, Array(Topic))</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>Optional callback </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      <tt>promise(Array(Topic))</tt>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='addTopic-dynamic'>
-      #
-(promise())
-<b>addTopic</b><span>(topic, interest, cb)</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>Add a topic</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>topic</span>
-      <span class='type'>
-        (
-          <tt>string</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>the topic in which to express interest </span>
-    </li>
-    <li>
-      <span class='name'>interest</span>
-      <span class='type'>
-        (
-          <tt>string</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>&quot;high&quot;, &quot;medium&quot;, or &quot;low&quot; </span>
-    </li>
-    <li>
-      <span class='name'>cb</span>
-      <span class='type'>
-        (
-          <tt>function(error)</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>Optional callback </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      <tt>promise()</tt>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='deleteTopic-dynamic'>
-      #
-(promise())
-<b>deleteTopic</b><span>(topic, cb)</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>Remove a topic</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>topic</span>
-      <span class='type'>
-        (
-          <tt>string</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>the topic in which to express interest </span>
-    </li>
-    <li>
-      <span class='name'>cb</span>
-      <span class='type'>
-        (
-          <tt>function(error)</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>Optional callback </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      <tt>promise()</tt>
-    </li>
-  </ul>
-</div>
-  </div>
 </div>
     </div>
     <div id='footer'>
-  May 04, 14 17:02:13 by
+  May 11, 15 08:54:19 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
-  2.0.8
+  2.0.11
   &#10034;
   Press H to see the keyboard shortcuts
   &#10034;
