@@ -120,12 +120,6 @@ module.exports =
     .then (reads) ->
       test.ok reads
       test.ok Array.isArray(reads.entries)
-      f.addTopic 'music', 'medium'
-    .then ->
-      f.topics()
-    .then (topics) ->
-      test.ok Array.isArray(topics)
-      f.deleteTopic 'music'
     .then ->
       f.searchFeeds 'arduino'
     .then (results) ->

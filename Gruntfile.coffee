@@ -71,13 +71,10 @@ module.exports = (grunt) ->
     "clean"
     "coffee"
     "codo"
-    "markedman"
   ]
   grunt.registerTask "doc", [
     "clean:doc"
     "codo"
-    "clean:man"
-    "markedman"
   ]
   grunt.registerTask "test", [
     "coffee"

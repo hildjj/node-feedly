@@ -653,35 +653,3 @@ module.exports = class Feedly
         tags = [tags]
       tags = @_normalizeTags tags
       @_request cb, "/v3/tags/#{tags.join(',')}", 'DELETE'
-
-  # List all topics
-  #
-  # @param cb [function(error, Array(Topic))] Optional callback
-  # @return [promise(Array(Topic))]
-  topics: (cb) ->
-    @_request cb, '/v3/topics'
-
-  # Add a topic
-  #
-  # @param topic [string] the topic in which to express interest
-  # @param interest [string] "high", "medium", or "low"
-  # @param cb [function(error)] Optional callback
-  # @return [promise()]
-  addTopic: (topic, interest, cb) ->
-    @ready.then () =>
-      if !topic.match(/^user\//)
-        topic = "user/#{@state.id}/topic/#{topic}"
-      @_request cb, '/v3/topics', 'POST',
-        id: topic
-        interest: interest
-
-  # Remove a topic
-  #
-  # @param topic [string] the topic in which to express interest
-  # @param cb [function(error)] Optional callback
-  # @return [promise()]
-  deleteTopic: (topic, cb) ->
-    @ready.then () =>
-      if !topic.match(/^user\//)
-        topic = "user/#{@state.id}/topic/#{topic}"
-      @_request cb, "/v3/topics/#{encodeURIComponent(topic)}", 'DELETE'
