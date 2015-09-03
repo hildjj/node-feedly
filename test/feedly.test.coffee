@@ -6,7 +6,10 @@ Feedly = require '../lib/feedly'
 
 FEEDLY_SECRET = process.env.FEEDLY_SECRET
 if !FEEDLY_SECRET?
-  throw new Error("Specify the client secret in the FEEDLY_SECRET environment variable")
+  throw new Error """
+Specify the client secret in the FEEDLY_SECRET environment variable
+Find it here: https://groups.google.com/forum/#!forum/feedly-cloud
+"""
 
 FEED_URL = 'http://blog.foodnetwork.com/fn-dish/feed/'
 FEED = "feed/#{FEED_URL}"
