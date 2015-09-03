@@ -25,9 +25,16 @@ module.exports = (grunt) ->
         dest: "lib/"
         ext: ".js"
 
+    # just run 'codo' on the command line (using .codoopts),
+    # and everything will work.
+    # grunt-codo doesn't seem to produce consistent output at the
+    # moment.
     codo:
       options:
         undocumented: true
+        name: "Feedly API"
+        readme: "README.md"
+        extra: ["LICENSE.md"]
       all:
         src: ["src/feedly.coffee"]
 
