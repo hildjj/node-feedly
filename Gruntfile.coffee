@@ -26,7 +26,10 @@ module.exports = (grunt) ->
         ext: ".js"
 
     codo:
-      options: {}
+      options:
+        undocumented: true
+      all:
+        src: ["src/feedly.coffee"]
 
     coffeelint:
       src: ["src/*.coffee"]
