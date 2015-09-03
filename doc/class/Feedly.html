@@ -302,7 +302,7 @@ as your access token in ~/.feedly by default.</p>
       <a href='#stream-dynamic'>
         #
 (promise(Array(Page)))
-<b>stream</b><span>(id, continuation, cb)</span>
+<b>stream</b><span>(id, options, cb)</span>
       </a>
     </span>
     <span class='desc'>
@@ -1443,11 +1443,12 @@ entry id, user and application.</p>
     <p class='signature' id='stream-dynamic'>
       #
 (promise(Array(Page)))
-<b>stream</b><span>(id, continuation, cb)</span>
+<b>stream</b><span>(id, options, cb)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>Get a list of entry ids for a specific stream.</p>
+  <p>Get a list of entry ids for a specific stream.</p><pre><code>   or an object with stream request parameters
+</code></pre>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -1463,10 +1464,10 @@ entry id, user and application.</p>
       <span class='desc'>the id of the stream </span>
     </li>
     <li>
-      <span class='name'>continuation</span>
+      <span class='name'>options</span>
       <span class='type'>
         (
-          <tt>string</tt>
+          <tt>string|object</tt>
         )
       </span>
       &mdash;
@@ -1879,7 +1880,7 @@ entry id, user and application.</p>
 </div>
     </div>
     <div id='footer'>
-  May 11, 15 08:54:19 by
+  September 03, 15 12:42:19 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
