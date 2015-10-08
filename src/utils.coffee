@@ -3,8 +3,7 @@ url = require 'url'
 
 q = require 'q'
 request = require 'request'
-
-BufferStream = require './BufferStream'
+NoFilter = require 'nofilter'
 
 exports.extend = (old, adds...)->
   old ?= {}
@@ -21,7 +20,7 @@ exports.qserver = (port, text) ->
     if u.pathname == '/'
       res.writeHead 200,
         'Content-Type': 'text/html'
-      bs = new BufferStream()
+      bs = new NoFilter()
       bs.on 'finish', () ->
         result_defer.resolve [u.query, bs.toString('utf8')]
         server.close()
@@ -84,4 +83,3 @@ unless Array::find
           return value  if predicate.call(thisArg, value, i, list)
         i++
       `undefined`
-
