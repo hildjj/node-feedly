@@ -536,7 +536,8 @@ module.exports = class Feedly
   # Get the content of a stream
   #
   # @param id [string] the id of the stream
-  # @param continuation [string]  a continuation id is used to page
+  # @param options [string|object]  a continuation id is used to page
+  #        or an object with stream request parameters
   # @param cb [function(error, Array(Page))] Optional callback
   # @return [promise(Array(Page))]
   contents: (id, options, cb) ->
