@@ -1,6 +1,6 @@
 {
   "name": "feedly",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "feedly.com API",
   "main": "lib/feedly.js",
   "scripts": {
