@@ -1,3 +1,7 @@
+try
+  require('source-map-support').install()
+catch
+
 fs = require 'fs'
 
 request = require 'request'
