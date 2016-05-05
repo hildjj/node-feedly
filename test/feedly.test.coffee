@@ -1,3 +1,7 @@
+try
+  require('source-map-support').install()
+catch
+
 fs = require 'fs'
 
 request = require 'request'
@@ -7,9 +11,13 @@ Feedly = require '../lib/feedly'
 FEEDLY_SECRET = process.env.FEEDLY_SECRET
 FEEDLY_DEVELOPER = process.env.FEEDLY_DEVELOPER
 if !FEEDLY_SECRET?
-  throw new Error("Specify the client secret in the FEEDLY_SECRET environment variable")
+    throw new Error """
+Specify the client secret in the FEEDLY_SECRET environment variable
+Find it here: https://groups.google.com/forum/#!forum/feedly-cloud
+"""
 if !FEEDLY_DEVELOPER?
   throw new Error("Specify the developer token in the FEEDLY_DEVELOPER environment variable")
+
 
 FEED_URL = 'http://blog.foodnetwork.com/fn-dish/feed/'
 FEED = "feed/#{FEED_URL}"

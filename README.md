@@ -12,11 +12,22 @@ Creating an instance
 
 Create an instance:
 
-    var Feedly = require './src/feedly'
+    var Feedly = require 'feedly'
 
     var f = new Feedly({
       client_id: 'MY_CLIENT_ID',
       client_secret: 'MY_CLIENT_SECRET'
+      port: 8080
+    });
+
+Use the sandbox:
+
+    var Feedly = require 'feedly'
+
+    var f = new Feedly({
+      client_id: 'sandbox',
+      client_secret: 'Get the current secret from http://developer.feedly.com/v3/sandbox/'
+      base: 'http://sandbox.feedly.com'
       port: 8080
     });
 
@@ -30,7 +41,7 @@ After that point, you won't need to log in again until your token expires
 (without your having called `refresh` in the meantime).
 
 **WARNING**: by default, this will store your auth token and refresh token in  
-`~/.feedly`, unencrypted.  Set the `config_file` options to null to prevent this 
+`~/.feedly`, unencrypted.  Set the `config_file` options to null to prevent this
 behavior, but you will have to log in through the web site each time you create
 a new `Feedly` instance.
 

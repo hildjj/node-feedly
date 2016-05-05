@@ -553,16 +553,22 @@ module.exports = class Feedly
   # Get a list of entry ids for a specific stream.
   #
   # @param id [string] the id of the stream
-  # @param continuation [string]  a continuation id is used to page
+  # @param options [string|object]  a continuation id is used to page
+  #        or an object with stream request parameters
   # @param cb [function(error, Array(Page))] Optional callback
   # @return [promise(Array(Page))]
-  stream: (id, continuation, cb) ->
-    if typeof(continuation) == 'function'
-      [cb, continuation] = [continuation, null]
-    input = {}
-    if continuation?
-      input.continuation = continuation
-    @_request cb, "/v3/streams/#{encodeURIComponent(id)}/ids", 'GET', input
+  stream: (id, options, cb) ->
+    input = switch typeof(options)
+      when 'function'
+        cb = options
+        {}
+      when 'string'
+        continuation: options
+      when 'object'
+        options
+      else
+        {}
+    @_requestURL cb, "/v3/streams/#{encodeURIComponent(id)}/ids", 'GET', input
 
   # Get the content of a stream
   #
