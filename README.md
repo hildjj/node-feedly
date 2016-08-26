@@ -16,7 +16,7 @@ Create an instance:
 
     var f = new Feedly({
       client_id: 'MY_CLIENT_ID',
-      client_secret: 'MY_CLIENT_SECRET'
+      client_secret: 'MY_CLIENT_SECRET',
       port: 8080
     });
 
@@ -26,8 +26,8 @@ Use the sandbox:
 
     var f = new Feedly({
       client_id: 'sandbox',
-      client_secret: 'Get the current secret from http://developer.feedly.com/v3/sandbox/'
-      base: 'http://sandbox.feedly.com'
+      client_secret: 'Get the current secret from http://developer.feedly.com/v3/sandbox/',
+      base: 'http://sandbox.feedly.com',
       port: 8080
     });
 
