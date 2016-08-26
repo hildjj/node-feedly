@@ -119,6 +119,10 @@ module.exports =
       f.contents FEED, contents.continuation
     .then (contents) ->
       test.ok contents
+      test.ok Array.isArray(contents.items)
+      f.contents FEED, {unreadOnly:true}
+    .then (contents) ->
+      test.ok contents
       f.markFeedRead FEED
     .then ->
       f.markCategoryRead 'testing_bar'
