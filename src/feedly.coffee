@@ -539,10 +539,17 @@ module.exports = class Feedly
   # @param continuation [string]  a continuation id is used to page
   # @param cb [function(error, Array(Page))] Optional callback
   # @return [promise(Array(Page))]
-  contents: (id, continuation, cb) ->
-    input = {}
-    if continuation?
-      input.continuation = continuation
+  contents: (id, options, cb) ->
+    input = switch typeof(options)
+      when 'function'
+        cb = options
+        {}
+      when 'string'
+        continuation: options
+      when 'object'
+        options
+      else
+        {}
     @_request cb, "/v3/streams/#{encodeURIComponent(id)}/contents", 'GET', input
 
   # Get the user’s subscriptions
