@@ -9,11 +9,15 @@ q = require 'q'
 Feedly = require '../lib/feedly'
 
 FEEDLY_SECRET = process.env.FEEDLY_SECRET
+FEEDLY_DEVELOPER = process.env.FEEDLY_DEVELOPER
 if !FEEDLY_SECRET?
-  throw new Error """
+    throw new Error """
 Specify the client secret in the FEEDLY_SECRET environment variable
 Find it here: https://groups.google.com/forum/#!forum/feedly-cloud
 """
+if !FEEDLY_DEVELOPER?
+  throw new Error("Specify the developer token in the FEEDLY_DEVELOPER environment variable")
+
 
 FEED_URL = 'http://blog.foodnetwork.com/fn-dish/feed/'
 FEED = "feed/#{FEED_URL}"
@@ -24,6 +28,7 @@ module.exports =
     f = new Feedly
       client_id: 'sandbox'
       client_secret: FEEDLY_SECRET
+      developer: false
       base: 'http://sandbox.feedly.com'
       port: 8080
       config_file: CONFIG
@@ -93,6 +98,10 @@ module.exports =
       .then ->
         f.markEntryUnread id
       .then ->
+        f.markEntrySaved id
+      .then ->
+        f.markEntryUnsaved id
+      .then ->
         f.tagEntry id, 'test_tag_foo'
       .then ->
         f.tags()
@@ -115,10 +124,13 @@ module.exports =
     .then (contents) ->
       test.ok contents
       test.ok Array.isArray(contents.items)
+      test.ok contents.items.length == 20
       test.ok contents.continuation
-      f.contents FEED, contents.continuation
+      f.contents FEED, 10, 'oldest', true, null, contents.continuation
     .then (contents) ->
       test.ok contents
+      test.ok Array.isArray(contents.items)
+      test.ok contents.items.length == 10
       f.markFeedRead FEED
     .then ->
       f.markCategoryRead 'testing_bar'
@@ -172,3 +184,23 @@ module.exports =
     , (er) ->
       console.log 'ERROR', er, er.stack
       test.ifError er
+
+   feedsProd: (testprod)->
+    f = new Feedly
+      client_id: 'sandbox'
+      client_secret: FEEDLY_DEVELOPER
+      developer: true
+      base: 'https://cloud.feedly.com'
+      port: 8080
+      config_file: CONFIG
+
+    testprod.ok f
+    testprod.equals f.options.base, 'https://cloud.feedly.com'
+    f.categories()
+      .then (categories) ->
+        testprod.ok categories
+      .then ->
+        testprod.done()
+      , (er) ->
+        console.log 'ERROR', er, er.stack
+        testprod.ifError er

@@ -46,6 +46,7 @@ module.exports = class Feedly
   #   the token.  (default: 3600000)
   # @option options [String] client_id The API client ID.  (REQUIRED)
   # @option options [String] client_secret The API client Secret.  (REQUIRED)
+  # @option options [bool] developer enable developer mode (default = false)
   constructor: (options) ->
     @options = utils.extend
       port: 0
@@ -56,6 +57,7 @@ module.exports = class Feedly
       slop: 3600000
       client_id: null
       client_secret: null
+      developer: false
     , options
     @options.config_file = untildify @options.config_file
     @options.html_file = untildify @options.html_file
@@ -179,21 +181,32 @@ module.exports = class Feedly
   _request: (callback, path, method='GET', body=null)->
     u = url.parse @options.base
     u.pathname = path
-    @_getAuth().then (auth)->
+
+    @_getAuthForMode().then (auth)->
       utils.qrequest
         method: method
         uri: url.format(u)
         headers:
           Authorization: "OAuth #{auth}"
         body: body
+        qs: body
         callback: callback
+
+  # @nodoc
+  _getAuthForMode: ()->
+          if(@options.developer)
+            d = q.defer()
+            d.resolve  @options.client_secret
+            return d.promise
+          else
+            return @_getAuth()
 
   # @nodoc
   _requestURL: (callback, path, method='GET', body=null)->
     u = url.parse @options.base
     u.pathname = path
     u.query = body
-    @_getAuth().then (auth)->
+    @_getAuthForMode().then (auth)->
       utils.qrequest
         method: method
         uri: url.format(u)
@@ -375,6 +388,30 @@ module.exports = class Feedly
       type: 'entries'
       action: 'keepUnread'
 
+  # Mark articles as saved.
+  #
+  # @param ids [Array(String)] article IDs to mark saved
+  # @param cb [function(error)] optional callback
+  markEntrySaved: (ids, cb) ->
+    if typeof(ids) == 'string'
+      ids = [ids]
+      @_request cb, '/v3/markers', 'POST',
+      entryIds: ids
+      type: 'entries'
+      action: 'markAsSaved'
+
+  # Mark articles as unsaved.
+  #
+  # @param ids [Array(String)] article IDs to mark unsaved
+  # @param cb [function(error)] optional callback
+  markEntryUnsaved: (ids, cb) ->
+    if typeof(ids) == 'string'
+      ids = [ids]
+    @_request cb, '/v3/markers', 'POST',
+      entryIds: ids
+      type: 'entries'
+      action: 'markAsUnsaved'
+
   # Mark feed(s) as read.
   #
   # @param id [Array(String)] feed ID to mark read
@@ -539,8 +576,16 @@ module.exports = class Feedly
   # @param continuation [string]  a continuation id is used to page
   # @param cb [function(error, Array(Page))] Optional callback
   # @return [promise(Array(Page))]
-  contents: (id, continuation, cb) ->
+  contents: (id, count, ranked, unreadOnly, newerThan, continuation, cb) ->
     input = {}
+    if count?
+      input.count = count
+    if ranked?
+      input.ranked = ranked
+    if unreadOnly?
+      input.unreadOnly = unreadOnly
+    if newerThan?
+      input.newerThan = newerThan
     if continuation?
       input.continuation = continuation
     @_request cb, "/v3/streams/#{encodeURIComponent(id)}/contents", 'GET', input

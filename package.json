@@ -33,6 +33,10 @@
     "name": "Joe Hildebrand",
     "email": "joe-github@cursive.net"
   },
+  "contributors": [{
+    "name": "Tobias Baumhöver",
+    "email": "baumhoto@gmail.com"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hildjj/node-feedly/issues"
