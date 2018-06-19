@@ -776,6 +776,7 @@ class Feedly {
    * @param {String} [options.continuation] - continue from where you left off
    * @param {Function} [cb] - Optional callback function(Error, Page)
    * @returns {Promise(Page)}
+   * @see https://developer.feedly.com/v3/streams/#get-a-list-of-entry-ids-for-a-specific-stream
    */
   stream (id, options, cb) {
     [options, cb] = _streamOptions(options, cb)
@@ -798,6 +799,7 @@ class Feedly {
    * @param {String} [options.continuation] - continue from where you left off
    * @param {Function} [cb] - Optional callback function(Error, ContentPage)
    * @returns {Promise(ContentPage)}
+   * @see https://developer.feedly.com/v3/streams/#get-the-content-of-a-stream
    */
   contents (id, options, cb) {
     [options, cb] = _streamOptions(options, cb)
@@ -813,6 +815,7 @@ class Feedly {
    *
    * @param {Function} [cb] - Optional callback function(Error, Array(Subscription))
    * @returns {Promise(Array(Subscription))}
+   * @see https://developer.feedly.com/v3/subscriptions/#get-the-users-subscriptions
    */
   subscriptions (cb) {
     return this._request(cb, '/v3/subscriptions', 'GET')
@@ -827,6 +830,7 @@ class Feedly {
    * @param {String} [title] - Subscription title
    * @param {Function} cb - Optional callback function(Error)
    * @returns {Promise} Done
+   * @see https://developer.feedly.com/v3/subscriptions/#subscribe-to-a-feed
    */
   subscribe (url, categories, title, cb) {
     if (!url.match(/^feed\//)) {
@@ -870,17 +874,16 @@ class Feedly {
     return this._request(cb, '/v3/subscriptions', 'POST', input)
   }
 
-  // [@link  API doc]
-
   /**
    * Unsubscribe from a feed
-   * [@link https://developer.feedly.com/v3/subscriptions/#unsubscribe-from-a-feed API doc]
    *
    * @param {String} id - Feed ID
    * @param {Function} [cb] - Optional callback function(Error)
    * @returns {Promise} Done
+   * @see https://developer.feedly.com/v3/subscriptions/#unsubscribe-from-a-feed
    */
   unsubscribe (id, cb) {
+    // TODO: add support for mass unsubscribe
     return this._request(
       cb,
       `/v3/subscriptions/${encodeURIComponent(id)}`,
@@ -894,6 +897,8 @@ class Feedly {
    * @param {String|Array(String)} tags - the tag(s) to apply to the entry
    * @param {Function} cb - Optional callback function(Error)
    * @returns {Promise} Done
+   * @see https://developer.feedly.com/v3/tags/#tag-an-existing-entry
+   * @see https://developer.feedly.com/v3/tags/#tag-multiple-entries-alternate
    */
   tagEntry (entry, tags, cb) {
     if (!Array.isArray(tags)) {
@@ -922,6 +927,7 @@ class Feedly {
    * @param {String} label - new label for the tag
    * @param {Function} cb - Optional callback function(Error)
    * @returns {Promise} Done
+   * @see https://developer.feedly.com/v3/tags/#change-a-tag-label
    */
   setTagLabel (tag, label, cb) {
     tag = _normalizeTag(tag, this.state.id)
@@ -939,6 +945,7 @@ class Feedly {
    * @param {String|Array(String)} tags - the tag(s) to remove
    * @param {Function} cb - Optional callback function(Error)
    * @returns {Promise} Done
+   * @see https://developer.feedly.com/v3/tags/#untag-multiple-entries
    */
   untagEntries (entries, tags, cb) {
     if (!Array.isArray(entries)) {
@@ -963,6 +970,7 @@ class Feedly {
    * @param {String|Array(String)} tags - the tag(s) to remove
    * @param {any} cb - Optional callback function(Error)
    * @returns {Promise} Done
+   * @see https://developer.feedly.com/v3/tags/#delete-tags
    */
   deleteTags (tags, cb) {
     if (!Array.isArray(tags)) {

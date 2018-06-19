@@ -51,21 +51,21 @@
         <article><p>This is a node API for <a href="http://developer.feedly.com">Feedly</a></p>
 <h1>Installation</h1><p>Install from NPM:</p>
 <pre class="prettyprint source"><code>npm install --save feedly</code></pre><h1>Creating an instance</h1><p>Create an instance:</p>
-<pre class="prettyprint source"><code>var Feedly = require 'feedly'
+<pre class="prettyprint source"><code>const Feedly = require('feedly')
 
-var f = new Feedly({
+const f = new Feedly({
   client_id: 'MY_CLIENT_ID',
   client_secret: 'MY_CLIENT_SECRET',
   port: 8080
-});</code></pre><p>Use the sandbox:</p>
-<pre class="prettyprint source"><code>var Feedly = require 'feedly'
+})</code></pre><p>Use the sandbox:</p>
+<pre class="prettyprint source"><code>const Feedly = require('feedly')
 
-var f = new Feedly({
+const f = new Feedly({
   client_id: 'sandbox',
   client_secret: 'Get the current secret from http://developer.feedly.com/v3/sandbox/',
   base: 'http://sandbox.feedly.com',
   port: 8080
-});</code></pre><h1>Authentication</h1><p>The first non-trivial method call you make to the object will cause your
+})</code></pre><h1>Authentication</h1><p>The first non-trivial method call you make to the object will cause your
 default browser to pop up asking you to log in.  When that process is complete,
 you will see a page served from http://localhost:8080/, which you can close.
 After that point, you won't need to log in again until your token expires
@@ -74,14 +74,8 @@ After that point, you won't need to log in again until your token expires
 behavior, but you will have to log in through the web site each time you create
 a new <code>Feedly</code> instance.</p>
 <h1>Callbacks and promises</h1><p>Each method takes an optional node-style <code>(error, results)</code> callback.  If you
-prefer a <a href="https://github.com/kriskowal/q">promise</a>-style
-approach, you do without a callback, like this:</p>
-<pre class="prettyprint source"><code>f.reads().then(function(results) {
-    // process results
-},
-function (error) {
-    // process error
-});</code></pre><h1>Documentation</h1><p>Full documentation for the API can be found
+prefer a promise-style approach, you do without a callback, like this:</p>
+<pre class="prettyprint source"><code>const results = await f.reads()</code></pre><h1>Documentation</h1><p>Full documentation for the API can be found
 <a href="http://hildjj.github.io/node-feedly/doc/">here</a>.</p></article>
     </section>
 
