@@ -12,24 +12,24 @@ Creating an instance
 
 Create an instance:
 
-    var Feedly = require 'feedly'
+    const Feedly = require('feedly')
 
-    var f = new Feedly({
+    const f = new Feedly({
       client_id: 'MY_CLIENT_ID',
       client_secret: 'MY_CLIENT_SECRET',
       port: 8080
-    });
+    })
 
 Use the sandbox:
 
-    var Feedly = require 'feedly'
+    const Feedly = require('feedly')
 
-    var f = new Feedly({
+    const f = new Feedly({
       client_id: 'sandbox',
       client_secret: 'Get the current secret from http://developer.feedly.com/v3/sandbox/',
       base: 'http://sandbox.feedly.com',
       port: 8080
-    });
+    })
 
 Authentication
 ==============
@@ -49,15 +49,9 @@ Callbacks and promises
 ======================
 
 Each method takes an optional node-style `(error, results)` callback.  If you
-prefer a [promise](https://github.com/kriskowal/q)-style
-approach, you do without a callback, like this:
+prefer a promise-style approach, you do without a callback, like this:
 
-    f.reads().then(function(results) {
-        // process results
-    },
-    function (error) {
-        // process error
-    });
+    const results = await f.reads()
 
 
 Documentation
