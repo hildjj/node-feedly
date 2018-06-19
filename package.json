@@ -4,18 +4,16 @@
   "description": "feedly.com API",
   "main": "lib/feedly.js",
   "scripts": {
-    "clean": "rm -rf coverage lib doc",
-    "lint": "coffeelint src test",
-    "codo": "codo src",
-    "coffee": "coffee -cm -o lib/ src",
-    "coverage": "istanbul cover nodeunit test/*.coffee",
-    "precoverage": "npm run coffee -s",
-    "test": "nodeunit test/*.coffee",
-    "pretest": "npm run coffee -s",
-    "prepublish": "npm run coffee -s",
+    "clean": "rm -rf coverage doc",
+    "lint": "standard lib/*.js test/*.js",
+    "doc": "jsdoc -c .jsdoc.conf",
+    "coverage": "nyc npm test",
+    "postcoverage": "nyc report -r html",
+    "test": "ava test/*.js",
     "watch": "watch 'npm run coverage' src/",
     "release": "npm version patch && git push --follow-tags && npm publish",
-    "live": "live-server --port=4001 --ignorePattern='(js|css|png)$' coverage/lcov-report",
+    "live": "live-server --port=4001 --ignorePattern='(js|css|png)$' coverage",
+    "predev": "node tools/copyif.js",
     "dev": "npm-run-all -p --silent watch live"
   },
   "repository": {
@@ -39,20 +37,18 @@
   },
   "homepage": "https://github.com/hildjj/node-feedly",
   "devDependencies": {
-    "codo": "latest",
-    "coffee-script": "latest",
-    "coffeelint": "latest",
-    "istanbul": "latest",
+    "ava": "latest",
+    "jsdoc": "latest",
     "live-server": "latest",
-    "nodeunit": "latest",
+    "minami": "latest",
     "npm-run-all": "latest",
-    "source-map-support": "latest",
+    "nyc": "latest",
+    "standard": "latest",
     "watch": "latest"
   },
   "dependencies": {
     "nofilter": "0.0",
-    "open": "0.0.5",
-    "q": "^1.4",
+    "opn": "^5.3.0",
     "request": "^2.72",
     "untildify": "^3.0"
   }
