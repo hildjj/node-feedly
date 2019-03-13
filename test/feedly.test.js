@@ -83,7 +83,7 @@ test('feeds', async t => {
   t.truthy(foo)
   await f.setCategoryLabel(foo.id, 'testing_foo2')
   await f.deleteCategory(foo.id)
-  await t.throws(f.setCategoryLabel(foo.id, 'testing_foo3'))
+  await t.throwsAsync(f.setCategoryLabel(foo.id, 'testing_foo3'))
 
   // also test callbacks
   await new Promise((resolve, reject) => {

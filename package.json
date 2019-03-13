@@ -47,7 +47,7 @@
     "watch": "latest"
   },
   "dependencies": {
-    "nofilter": "1.0.1",
+    "nofilter": "1.0.2",
     "opn": "^5.4.0",
     "request": "^2.88",
     "untildify": "^3.0"
