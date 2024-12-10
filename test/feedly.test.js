@@ -5,6 +5,7 @@ const Feedly = require('../lib/feedly')
 const test = require('ava')
 const util = require('util')
 const unlink = util.promisify(fs.unlink)
+const path = require('path')
 
 const { FEEDLY_SECRET } = process.env
 if ((FEEDLY_SECRET == null)) {
@@ -15,7 +16,7 @@ Find it here: https://groups.google.com/forum/#!forum/feedly-cloud`)
 
 const FEED_URL = 'https://www.tbray.org/ongoing/ongoing.atom'
 const FEED = `feed/${FEED_URL}`
-const CONFIG = `${__dirname}/test_config.json`
+const CONFIG = path.join(__dirname, 'test_config.json')
 const SANDBOX = 'sandbox7'
 const SAFE = ['id', 'name']
 
@@ -25,7 +26,7 @@ function pick (o, ...props) {
     props = props[0]
   }
   for (const p of props) {
-    if (o.hasOwnProperty(p)) {
+    if (Object.prototype.hasOwnProperty.hasOwnProperty.call(o, p)) {
       ret[p] = o[p]
     }
   }
