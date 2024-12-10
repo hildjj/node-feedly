@@ -44,12 +44,17 @@
     "npm-run-all": "latest",
     "nyc": "latest",
     "standard": "latest",
+    "taffydb": "2.7.3",
     "watch": "latest"
   },
   "dependencies": {
-    "nofilter": "1.0.2",
-    "opn": "^5.4.0",
+    "nofilter": "5.0.0",
+    "opn": "^6.0.0",
     "request": "^2.88",
-    "untildify": "^3.0"
+    "untildify": "^5.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=18.8"
   }
 }
